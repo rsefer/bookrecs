@@ -205,7 +205,6 @@ jQuery(document).ready(function($) {
 	$.ajax({
 		url: 'https://spreadsheets.google.com/feeds/cells/1iObjcDqFnybsi5GaxiEWh6pY2kGV0pH2OEP7ylWQaL0/1/public/full?alt=json'
 	}).done(function(data, textStatus) {
-		console.log(data);
 		if (data.feed.entry && data.feed.entry.length > 0) {
 			var entries = [];
 			var entry = {};
