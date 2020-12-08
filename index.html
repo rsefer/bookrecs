@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>2020 Year of Books</title>
+<style>
+	/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
+
+	html,
+	body {
+		color: #000;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+		font-size: 16px;
+	}
+
+	.wrapper {
+		margin: 2rem auto;
+		padding: 0px 2rem;
+		max-width: 1024px;
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+	.intro {
+		margin: 0px auto 2rem;
+		max-width: 768px;
+	}
+
+	.intro a {
+		color: #000;
+	}
+
+	.book-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+
+	.book {
+		flex-basis: 100%;
+		margin-top: 2rem;
+	}
+
+	.book > *:not(:first-child) {
+		margin-top: 0.5rem;
+	}
+
+	.book-title {
+		color: inherit;
+		font-size: 1.375rem;
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	.book-title:hover {
+		text-decoration: underline;
+	}
+
+	.book-author {
+		font-size: 1.125rem;
+	}
+
+	.book-author a {
+		color: grey;
+	}
+
+	.genre {
+		padding: 0.25em 0.5em;
+		border-radius: 0.25em;
+		color: white;
+		background: red;
+		font-size: 0.75rem;
+		line-height: 1;
+		letter-spacing: 0.3px;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+
+	.genre[data-genre="Literary Fiction"],
+	.genre[data-genre="Historical Fiction"],
+	.genre[data-genre="Science Fiction"] {
+		background: #5db95d;
+	}
+
+	.genre[data-genre="General Non-Fiction"],
+	.genre[data-genre="History"],
+	.genre[data-genre="Biography/Autobiography/Memior"],
+	.genre[data-genre="True Crime"],
+	.genre[data-genre="Self-Help"] {
+		background: #5656f5;
+	}
+
+	.genre:hover {
+		cursor: pointer;
+		opacity: 0.4;
+	}
+
+	.genres-wrap {
+		padding: 1rem;
+		border-radius: 0.125rem;
+		background: #d8d8d8;
+		text-align: center;
+	}
+
+	.genres-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.genres-list > * {
+		margin: 0.5rem;
+	}
+
+	.filter-instructions,
+	.filter-message {
+		line-height: 1.5rem;
+	}
+
+	.filter-message,
+	.filter-reset {
+		display: none;
+	}
+
+	.filter-reset {
+		margin-top: 0.5rem;;
+		font-size: 0.75rem;
+		text-decoration: underline;
+	}
+
+	.filter-reset:hover {
+		cursor: pointer;
+	}
+
+	.book-genre,
+	.filter-message .genre {
+		display: inline-block;
+	}
+
+	.book-genre {
+		margin: 0.75rem 0px 0.25rem !important;
+	}
+
+	.question {
+		font-weight: bold;
+	}
+
+	.answer {
+		margin-top: 0.5rem;
+	}
+
+	.intro,
+	.answer {
+		line-height: 1.4;
+	}
+
+	.book-submitter {
+		font-size: 0.75rem;
+		text-align: right;
+	}
+
+	.book-submitter a {
+		color: red;
+	}
+
+	.loading {
+		flex-basis: 100%;
+		margin: 2rem;
+		text-align: center;
+	}
+
+	@media (min-width: 1024px) {
+
+		.book {
+			flex-basis: calc((100% - 2rem) / 2);
+		}
+
+	}
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+	<h1>Year of Books</h1>
+	<div class="intro">2020 has been an "interesting" year. For many, it has allowed more reading time than usual. There are countless "best books" lists but if you are anything like me, you prefer the opinion of those in your social circles! What follows is a the list of books submited. Feel free to <a href="https://forms.gle/ULbZvy6h64MCuxbw9">submit your own here</a>. Happy reading.</div>
+	<div class="genres-wrap">
+		<div class="filter-instructions">Filter by genre:</div>
+		<div class="genres-list"></div>
+		<div class="filter-message">Filtering by: <span></span></div>
+		<div class="filter-reset">Show All Genres</div>
+	</div>
+	<div id="book-list" class="book-list"><div class="loading">Loading...</div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script>
+jQuery(document).ready(function($) {
+	$.ajax({
+		url: 'https://spreadsheets.google.com/feeds/cells/1iObjcDqFnybsi5GaxiEWh6pY2kGV0pH2OEP7ylWQaL0/1/public/full?alt=json'
+	}).done(function(data, textStatus) {
+		console.log(data);
+		if (data.feed.entry && data.feed.entry.length > 0) {
+			var entries = [];
+			var entry = {};
+			var genres = [];
+			for (var i = 0; i < data.feed.entry.length; i++) {
+				var cell = data.feed.entry[i]['gs$cell'];
+				if (cell.row == '1') { continue; }
+				var key;
+				switch (cell.col) {
+					case '1':
+						key = 'timestamp';
+					break;
+					case '2':
+						key = 'name';
+					break;
+					case '3':
+						key = 'email';
+					break;
+					case '4':
+						key = 'profile';
+					break;
+					case '5':
+						key = 'title';
+					break;
+					case '6':
+						key = 'author';
+					break;
+					case '7':
+						key = 'genre';
+					break;
+					case '8':
+						key = 'like';
+					break;
+					case '9':
+						key = 'who';
+					break;
+				}
+				if (key) {
+					entry[key] = cell.inputValue;
+				}
+				if (cell.col == '9') {
+					entries.push(entry);
+					entry = {};
+				}
+			}
+			var markup = '';
+			entries.reverse();
+			for (var e = 0; e < entries.length; e++) {
+				var entry = entries[e];
+				markup += '<div class="book"';
+				if (entry.genre) {
+					markup += ' data-genre="' + entry.genre + '"';
+					if (!genres.includes(entry.genre)) {
+						genres.push(entry.genre);
+					}
+				}
+				markup += '>';
+					if (entry.title) {
+						markup += '<a target="_blank" href="https://www.goodreads.com/search?q=' + encodeURI((entry.title + ' ' + entry.author).replace(/\s+/g, '+')) + '" class="book-title">' + entry.title + '</a>';
+					}
+					if (entry.author) {
+						markup += '<div class="book-author">by <a target="_blank" href="https://www.goodreads.com/search?q=' + encodeURI(entry.author.replace(/\s+/g, '+')) + '">' + entry.author + '</a></div>';
+					}
+					if (entry.genre) {
+						markup += '<div class="genre book-genre" data-genre="' + entry.genre + '">' + entry.genre + '</div>';
+					}
+					if (entry.like) {
+						markup += '<div class="book-like"><div class="question">What did you like about the book?</div><div class="answer">' + entry.like + '</div></div>';
+					}
+					if (entry.who) {
+						markup += '<div class="book-who"><div class="question">Who is this book for?</div><div class="answer">' + entry.who + '</div></div>';
+					}
+					if (entry.name) {
+						markup += '<div class="book-submitter">';
+							markup += 'submitted by ';
+							if (entry.profile) {
+								markup += '<a target="_blank" href="' + entry.profile + '">';
+							}
+							markup += entry.name;
+							if (entry.profile) {
+								markup += '</a>';
+							}
+						markup += '</div>';
+					}
+				markup += '</div>';
+			}
+			for (var g = 0; g < genres.length; g++) {
+				$('.genres-list').append('<div class="genre" data-genre="' + genres[g] + '">' + genres[g] + '</div>');
+			}
+			$('#book-list').html(markup);
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error(errorThrown);
+	});
+
+	$('body').on('click', '.genre', function() {
+		var genre = $(this).text();
+		$('.filter-instructions, .genres-list').hide();
+		$('.filter-message, .filter-reset').show();
+		$('.filter-message span').html('<div class="genre" data-genre="' + genre + '">' + genre + '</div>');
+
+		$('.book').each(function() {
+			if ($(this).attr('data-genre') == genre) {
+				$(this).show();
+			} else {
+				$(this).hide();
+			}
+		});
+	});
+
+	$('body').on('click', '.filter-reset', function() {
+		$('.filter-message, .filter-reset').hide();
+		$('.filter-instructions, .genres-list').show();
+		$('.book').show();
+	});
+
+});
+</script>
+
+</body>
+</html>
