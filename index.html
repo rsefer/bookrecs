@@ -297,7 +297,19 @@ jQuery(document).ready(function($) {
 						markup += '<a target="_blank" href="https://www.goodreads.com/search?q=' + encodeURI(entry.title.replace(/\s+/g, '+')) + '" class="book-title">' + entry.title + '</a>';
 					}
 					if (entry.author) {
-						markup += '<div class="book-author">by <a target="_blank" href="https://www.goodreads.com/search?q=' + encodeURI(entry.author.replace(/\s+/g, '+')) + '">' + entry.author + '</a></div>';
+						markup += '<div class="book-author">by ';
+						var authors = entry.author.split('|');
+						for (var a = 0; a < authors.length; a++) {
+							markup += '<a target="_blank" href="https://www.goodreads.com/search?q=' + encodeURI(authors[a].replace(/\s+/g, '+')) + '">' + authors[a] + '</a>';
+							if (authors.length > 1) {
+								if (a < authors.length - 2) {
+									markup += ', ';
+								} else if (a == authors.length - 2) {
+									markup += ' and ';
+								}
+							}
+						}
+						markup += '</div>';
 					}
 					if (entry.genre) {
 						markup += '<div class="genre book-genre" data-genre="' + entry.genre + '">' + entry.genre + '</div>';
