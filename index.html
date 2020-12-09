@@ -48,11 +48,11 @@
 		margin-top: 2rem;
 	}
 
-	.book:nth-child(even) {
+	.book.alt {
 		padding: 2rem 0px;
 	}
 
-	.book:nth-child(even):before {
+	.book.alt:before {
 		content: '';
 		z-index: -1;
 		position: absolute;
@@ -202,11 +202,11 @@
 			flex-basis: calc((100% - 2rem) / 2);
 		}
 
-		.book:nth-child(even) {
+		.book.alt {
 			padding: 0px;
 		}
 
-		.book:nth-child(even):before {
+		.book.alt:before {
 			content: '';
 			display: none;
 		}
@@ -220,6 +220,7 @@
 <div class="wrapper">
 	<h1>Year of Books</h1>
 	<div class="intro">2020 has been an "interesting" year and for many has allowed more reading time than usual. There are countless <em>best books</em> lists but if you are anything like me, you prefer the opinion of those in your social circles! What follows is the list of books submitted, new and old. Feel free to <a href="https://forms.gle/ULbZvy6h64MCuxbw9">submit your own here</a> and share with your bookworm friends. Happy reading!</div>
+	<div id="genres-anchor"></div>
 	<div class="genres-wrap">
 		<div class="filter-instructions">Filter by genre:</div>
 		<div class="genres-list"></div>
@@ -324,7 +325,7 @@ jQuery(document).ready(function($) {
 			for (var g = 0; g < genres.length; g++) {
 				$('.genres-list').append('<div class="genre" data-genre="' + genres[g] + '">' + genres[g] + '</div>');
 			}
-			$('#book-list').html(markup);
+			$('#book-list').html(markup).promise().done(bandEvents);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error(errorThrown);
@@ -343,18 +344,28 @@ jQuery(document).ready(function($) {
 				$(this).hide();
 			}
 		});
-
-		$('html, body').scrollTop($('.intro').offset().top + $('.intro').outerHeight());
+		bandEvents();
+		scrollToGenres();
 	});
 
 	$('body').on('click', '.filter-reset', function() {
 		$('.filter-message, .filter-reset').hide();
 		$('.filter-instructions, .genres-list').show();
 		$('.book').show();
-		$('html, body').scrollTop($('.intro').offset().top + $('.intro').outerHeight());
+		bandEvents();
+		scrollToGenres();
 	});
 
 });
+
+function scrollToGenres() {
+	$('html, body').scrollTop($('#genres-anchor').offset().top);
+}
+
+function bandEvents() {
+	$('.book:visible:odd').addClass('alt');
+	$('.book:hidden, .book:visible:even').removeClass('alt');
+}
 </script>
 
 </body>
