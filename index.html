@@ -119,6 +119,9 @@
 	}
 
 	.genres-wrap {
+		z-index: 99;
+		position: sticky;
+		top: 0px;
 		padding: 1rem;
 		border-radius: 0.125rem;
 		background: #d8d8d8;
@@ -340,12 +343,15 @@ jQuery(document).ready(function($) {
 				$(this).hide();
 			}
 		});
+
+		$('html, body').scrollTop($('.intro').offset().top + $('.intro').outerHeight());
 	});
 
 	$('body').on('click', '.filter-reset', function() {
 		$('.filter-message, .filter-reset').hide();
 		$('.filter-instructions, .genres-list').show();
 		$('.book').show();
+		$('html, body').scrollTop($('.intro').offset().top + $('.intro').outerHeight());
 	});
 
 });
