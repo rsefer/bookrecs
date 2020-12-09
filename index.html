@@ -290,7 +290,7 @@ jQuery(document).ready(function($) {
 				}
 				markup += '>';
 					if (entry.title) {
-						markup += '<a target="_blank" href="https://www.goodreads.com/search?q=' + encodeURI((entry.title + ' ' + entry.author).replace(/\s+/g, '+')) + '" class="book-title">' + entry.title + '</a>';
+						markup += '<a target="_blank" href="https://www.goodreads.com/search?q=' + encodeURI(entry.title.replace(/\s+/g, '+')) + '" class="book-title">' + entry.title + '</a>';
 					}
 					if (entry.author) {
 						markup += '<div class="book-author">by <a target="_blank" href="https://www.goodreads.com/search?q=' + encodeURI(entry.author.replace(/\s+/g, '+')) + '">' + entry.author + '</a></div>';
